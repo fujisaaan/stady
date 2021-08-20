@@ -1,0 +1,21 @@
+Public Function MySaveFileName() As String
+     Dim sgetfile As String
+     'InitialFileName:="保存するファイル名.拡張子", fileFilter:="ファイルの種類, *.拡張子"
+     sgetfile = Application.GetSaveAsFilename(InitialFileName:="test.csv", fileFilter:="CSV UTF-8(コンマ区切り)(*.csv), *.csv")
+     If sgetfile = "False" Then
+         MySaveFileName = ""
+     Else
+         MySaveFileName = sfile
+     End If
+End Function
+
+Private Sub CommandButton1_Click()
+    ' ネットワークの保存先
+    With CreateObject("WScript.Shell")
+        ' 保存先を入力
+        .CurrentDirectory = "C:"
+    End With
+    ' 保存の関数呼び出し
+    MySaveFileName
+End Sub
+
