@@ -1,0 +1,21 @@
+/*
+■スクロールしてelementが画面内に入ったらクラスを追加するjs
+発火したらelementに「.isView」クラスが追加されるので動きはcssで追加する
+*/
+
+function scrollVisivle(target) {
+  window.addEventListener('scroll', view);
+  function view() {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    target.forEach(element => {
+      const elmPos = element.getBoundingClientRect().top + scrollY;
+      if (scrollY > elmPos - windowHeight) {
+        element.classList.add('isView');// 発火した際のクラスを変更する場合はここを修正
+      }/* else {
+        element.classList.remove('isView');
+      }*/
+      // 上記非表示を消せば何度も繰り返し発火させることが出来る
+    });
+  }
+}
